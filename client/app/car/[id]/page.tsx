@@ -30,7 +30,7 @@ async function CarPage({
       {},
       {
         vector: car.$vector,
-        limit: 5, // we will cut the first car and want to show 5 similar cars
+        limit: 3, // we will cut the first car and want to show  3 similar cars
         includeSimilarity: true,
       }
     )
