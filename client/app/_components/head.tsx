@@ -30,15 +30,15 @@ const Header = () => {
         />
       </svg>
       <h1 className="relative z-10 text-6xl font-bold text-white mb-4 font-family:ui-monospace" >Kai and Karo AI </h1>
-      <div className="relative z-10 w-80 h-45 md:w-[36rem] md:h-60">
-        <Image
-          src="/range.jpeg" 
-          alt="Car"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-        />
-      </div>
+      <div className="relative z-10 w-80 h-60 md:w-[36rem] md:h-60 p-4">
+      <Image
+        src="/range.jpeg" 
+        alt="Car"
+        layout="fill"
+        objectFit="cover"
+        className="rounded-lg"
+      />
+    </div>
     </div>
   );
 };
