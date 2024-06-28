@@ -27,7 +27,7 @@ const Home = () => {
           Discover Your Perfect Car
         </h1>
         <p className="text-lg md:text-xl mb-8">
-          Use Our Advanced <span className="text-yellow-500 text-2xl font-serif ">AI System</span>  to Self-Recommend Cars Without Being an Expert
+          Use Our Advanced <span className="text-yellow-500 text-2xl font-serif ">AI </span> System to Self-<span className="text-yellow-500 text-2xl font-serif ">Recommend</span> Cars Without Being an Expert
         </p>
         </div>
         <div className="w-full max-w-4xl mb-2 ">
