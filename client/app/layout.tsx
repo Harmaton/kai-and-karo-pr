@@ -15,6 +15,9 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/logo-dark-mode.svg"
+  },
   title: "Kaiandkaro search",
   description: "Gen AI search engine",
 };
