@@ -28,8 +28,8 @@ async function SearchTerm({
     .toArray()) as Car[];
 
   return (
-    <div className="flex flex-col items-center justify-center p-20 pt-10">
-      <h1 className="mb-10 text-xl text-gray-100">
+    <div className="flex flex-col border rounded-lg m-4 items-center justify-center p-20 pt-10">
+      <h1 className="mb-10 text-xl text-gray-800">
         Suggested results based on your search
       </h1>
 

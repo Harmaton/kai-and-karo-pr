@@ -14,10 +14,10 @@ function SearchInput() {
   return (
     <form
       action={searchAction}
-      className="w-full flex text-black items-center px-5 rounded-full border-white bg-white border shadow-lg"
+      className="w-full flex text-black border-gray-800 items-center px-5 rounded-full bg-white border shadow-lg"
     >
       <Link href="/">
-        <HomeIcon className="h-10 w-10 text-blue-500" />
+        <HomeIcon className="h-10 w-10 text-gray-800" />
       </Link>
       <input
         type="text"
