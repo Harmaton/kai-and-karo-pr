@@ -2,7 +2,9 @@
 import CarPoster from "@/components/CarPoster";
 import db from "@/db";
 import { Car, SimilarCar } from "@/types";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // refresh cache every 24 hours
@@ -30,7 +32,7 @@ async function CarPage({
       {},
       {
         vector: car.$vector,
-        limit: 3, // we will cut the first car and want to show  3 similar cars
+        limit: 4, // we will cut the first car and want to show  3 similar cars
         includeSimilarity: true,
       }
     )
@@ -40,14 +42,25 @@ async function CarPage({
   similarcars.shift();
 
   return (
-    <div>
-      <div className="flex flex-col md:flex-row items-center gap-y-10 p-10 pb-0">
+    <div className="m-2 ">
+        <div className="flex items-start justify-start mb-4 mt-4 p-2">
+      <Link href={'/find'}>
+        <ChevronLeftIcon
+          className="h-8 w-8 mr-4 text-blue-800 cursor-pointer"
+        />
+        </Link>
+        <h1 className="ml-4 mb-0 text-2xl font-serif text-gray-900">
+          Suggested results based on your search
+        </h1>
+
+      </div>
+      <div className="flex flex-col md:flex-row items-center gap-y-10 p-10 pb-0 m-2 ">
         <Image
           src={car.Image}
           alt={car.Model}
           width={300}
           height={450}
-          className="shrink-0 rounded-lg "
+          className="shrink-0 rounded-lg mb-2"
         />
         <div className="px-2 md:px-10 flex flex-col gap-y-2">
           <h1 className="text-6xl font-bold">{car.Name}</h1>
