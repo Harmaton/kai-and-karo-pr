@@ -2,6 +2,7 @@
 import CarPoster from "@/components/CarPoster";
 import db from "@/db";
 import { Car, SimilarCar } from "@/types";
+import { ArrowsRightLeftIcon } from "@heroicons/react/20/solid";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,11 +46,11 @@ async function CarPage({
     <div className="m-2 ">
         <div className="flex items-start justify-start mb-4 mt-4 p-2">
       <Link href={'/find'}>
-        <ChevronLeftIcon
-          className="h-8 w-8 mr-4 text-blue-800 cursor-pointer"
+        <ArrowsRightLeftIcon
+          className="h-8 w-8 mr-4 text-yellow-800 cursor-pointer"
         />
         </Link>
-        <h1 className="ml-4 mb-0 text-2xl font-serif text-gray-900">
+        <h1 className="ml-4 mb-0 text-2xl font-serif text-white">
           Suggested results based on your search
         </h1>
 

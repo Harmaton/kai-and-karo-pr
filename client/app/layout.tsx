@@ -11,6 +11,8 @@ import {
   fontCaveat,
 } from "@/lib/fonts"
 import { cn } from "@/lib/utils";
+import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,10 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
     <body
       className={cn(
-        "min-h-screen bg-background antialiased scrollbar-thin scrollbar-thumb-slate-800 scrollbar-thumb-rounded-xl scrollbar-track-rounded-xl",
+        "min-h-screen bg-gray-800 text-white antialiased scrollbar-thin scrollbar-thumb-slate-800 scrollbar-thumb-rounded-xl scrollbar-track-rounded-xl",
         fontSans.variable,
         fontMono.variable,
         fontPoppins.variable,
@@ -39,9 +42,10 @@ export default function RootLayout({
         fontManrope.className,
         fontCaveat.variable
       )}
-    >    
+    >  <Navbar />
       {children}
     </body>
   </html>
+  </ClerkProvider>
   );
 }
