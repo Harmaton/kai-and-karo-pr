@@ -1,18 +1,22 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { SignInButton, SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { FetchAdminStatus } from "@/_actions/admin";
 import { CheckUser } from "@/_actions/user";
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { useAuth } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
-export default async function Navbar() {  
-  const user = await currentUser()
-  if(user) {
-    await CheckUser(user.emailAddresses[0].emailAddress)
-  } 
+export default async function Navbar() {
+  const user = await currentUser();
+  if (user) {
+    await CheckUser(user.emailAddresses[0].emailAddress);
+  }
 
   const isadmin = await FetchAdminStatus();
 

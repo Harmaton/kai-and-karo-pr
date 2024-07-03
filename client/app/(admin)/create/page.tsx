@@ -7,25 +7,26 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
-export default function page() {
+export default function Page() {
   const [name, setName] = useState("");
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const data = await CreateChatbot(name);
-      setName('');
+      setName("");
       console.log(data);
       if (data?.bot?.id) {
         router.push(`/edit/${data.bot.id}`);
       } else {
-        console.error('Error creating bot:', data?.message);
+        console.error("Error creating bot:", data?.message);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
+
   return (
     <div className="flex flex-col items-center justify-center md:flex-row md:space-x-10 bg-white p-10 rounded-md m-10">
       <Avatar seed={"create-chatbot"} />
