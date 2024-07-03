@@ -7,7 +7,7 @@ import { ClipboardCopyIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-export default function page({ params: { id } }: { params: { id: string } }) {
+export default function Page({ params: { id } }: { params: { id: string } }) {
   const [url, setUrl] = useState<string>("");
 
   useEffect(()=> {
