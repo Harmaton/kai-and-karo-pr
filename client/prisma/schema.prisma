@@ -1,4 +1,4 @@
-datasource db {
+datasource database {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
@@ -7,9 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+
 model Chatbot {
   id               String                  @id @default(uuid())
-  clerkUserId      String                  @map("clerk_user_id")
+  clerkUserId      String   
   name             String
   createdAt        DateTime                @default(now()) @map("created_at")
   characteristics  ChatbotCharacteristic[]
@@ -18,9 +19,9 @@ model Chatbot {
 
 model ChatbotCharacteristic {
   id         String   @id @default(uuid())
-  chatbotId  String   @map("chatbot_id")
+  chatbotId  String   
   content    String
-  createdAt  DateTime @default(now()) @map("created_at")
+  createdAt  DateTime @default(now()) 
   chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
 
   @@index([chatbotId])
@@ -29,16 +30,18 @@ model ChatbotCharacteristic {
 model Guest {
   id        String      @id @default(uuid())
   name      String?
-  email     String?
-  createdAt DateTime    @default(now()) @map("created_at")
+  email     String @unique
+  clerkid String @unique
+  isAdmin Boolean @default(false)
+  createdAt DateTime    @default(now()) 
   sessions  ChatSession[]
 }
 
 model ChatSession {
   id        String      @id @default(uuid())
-  chatbotId String      @map("chatbot_id")
-  guestId   String?     @map("guest_id")
-  createdAt DateTime    @default(now()) @map("created_at")
+  chatbotId String      
+  guestId   String?     
+  createdAt DateTime    @default(now()) 
   chatbot   Chatbot     @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
   guest     Guest?      @relation(fields: [guestId], references: [id], onDelete: SetNull)
   messages  Message[]
@@ -54,9 +57,9 @@ enum SenderType {
 
 model Message {
   id           String     @id @default(uuid())
-  chatSessionId String     @map("chat_session_id")
+  chatSessionId String   
   content      String
-  createdAt    DateTime    @default(now()) @map("created_at")
+  createdAt    DateTime    @default(now()) 
   sender       SenderType
   chatSession  ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
 

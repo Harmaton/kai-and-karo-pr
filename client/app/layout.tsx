@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,8 +43,9 @@ export default function RootLayout({
         fontManrope.className,
         fontCaveat.variable
       )}
-    >  <Navbar />
+    >  
       {children}
+      <Toaster />
     </body>
   </html>
   </ClerkProvider>
