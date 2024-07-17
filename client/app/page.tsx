@@ -16,19 +16,19 @@ const Home = () => {
     {
       href: "/find",
       icon: DocumentMagnifyingGlassIcon,
-      text: "Describe & Discover Cars",
+      text: "AI Car search",
       color: "text-yellow-500",
     },
     {
       href: "/agent",
       icon: EnvelopeIcon,
-      text: "AI Car Booking Agent",
+      text: "Car Enquiry Live agents",
       color: "text-green-500",
     },
     {
       href: "/lens",
       icon: CameraIcon,
-      text: "Capture with Car Lens AI",
+      text: "Search by Camera",
       color: "text-red-500",
     },
     {
