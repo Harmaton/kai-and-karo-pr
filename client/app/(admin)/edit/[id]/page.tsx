@@ -13,6 +13,7 @@ import { Chatbot, ChatbotCharacteristic } from "@prisma/client";
 import { ClipboardCopyIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Characterisctic from "./_components/characterisctic";
 
 export default function EditChatbotPage({
   params: { id },
@@ -146,7 +147,12 @@ export default function EditChatbotPage({
           </form>
 
           <ul className="flex flex-wrap-reverse gap-5 text-black">
-            <li>1 2 3</li>
+            {characteristics.map((characteristic) => (
+              <Characterisctic
+                key={characteristic.id}
+                characteristic={characteristic}
+              />
+            ))}
           </ul>
         </div>
       </section>

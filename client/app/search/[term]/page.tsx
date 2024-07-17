@@ -1,10 +1,8 @@
-
 import CarPoster from "@/components/CarPoster";
 import db from "@/db";
 import { Car } from "@/types";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import router from "next/navigation";
 
 // refresh cache every 24 hours
 export const revalidate = 60 * 60 * 24;
@@ -32,16 +30,13 @@ async function SearchTerm({
 
   return (
     <div className="flex flex-col bg-gray-800 border rounded-lg m-4 items-center justify-center p-20 pt-10">
-     <div className="flex items-start justify-start mb-8">
-      <Link href={'/find'}>
-        <ChevronLeftIcon
-          className="h-8 w-8 mr-4 text-blue-800 cursor-pointer"
-        />
+      <div className="flex items-start justify-start mb-8">
+        <Link href={"/find"}>
+          <ChevronLeftIcon className="h-8 w-8 mr-4 text-blue-800 cursor-pointer" />
         </Link>
         <h1 className="ml-4 mb-0 text-2xl font-serif text-white">
           Suggested results based on your search
         </h1>
-
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
