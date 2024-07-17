@@ -47,7 +47,7 @@ const Home = () => {
           <Header />
           <div>
             <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-yellow-300 my-8">
-              Discover Your Perfect Car
+              Escape the Old Search, Discover the Perfect Car
             </h1>
             <p className="text-lg md:text-xl mb-8">
               Use Our Advanced{" "}
@@ -59,7 +59,9 @@ const Home = () => {
               Cars Without Being an Expert
             </p>
           </div>
-          <div className="text-3xl font-serif mb-4 mt-2 text-center font-bold">Features</div>
+          <div className="text-3xl font-serif mb-4 mt-2 text-center font-bold">
+            Features
+          </div>
           <div className="w-full max-w-4xl mb-2 ">
             <div className="grid grid-cols-1 md:grid-cols-2  justify-center lg:grid-cols-4 gap-6">
               {items.map((item, index) => (
@@ -69,9 +71,9 @@ const Home = () => {
                   key={index}
                 >
                   <div className="rounded-full p-2 mr-2 bg-yellow-300">
-                  <item.icon
-                    className={`h-8 w-8 m-auto items-center text-gray-800 group-hover:text-white`}
-                  />
+                    <item.icon
+                      className={`h-8 w-8 m-auto items-center text-gray-800 group-hover:text-white`}
+                    />
                   </div>
                   <div className="text-xl font-semibold text-center">
                     {item.text}
