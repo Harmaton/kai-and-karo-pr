@@ -12,7 +12,7 @@ export default function Layoutheader() {
         <div className="space-y-1">
           <h1 className="font-serif">Kai and Karo AI Agents</h1>
           <h2 className="text-sm font-extralight">
-            Customizable AI car agents
+            Our Customizable AI agents
           </h2>
         </div>
       </Link>

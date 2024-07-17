@@ -6,14 +6,14 @@ import { auth } from "@clerk/nextjs/server";
 export async function CheckUser(email: string) {
   try {
     const { userId } = auth();
-    if (userId) {
+    if (email) {
       let user = await prismadb.guest.findUnique({
         where: {
-          clerkid: userId,
+          email: email,
         },
       });
 
-      if (!user) {
+      if (!user && userId) {
         user = await prismadb.guest.create({
           data: {
             clerkid: userId,

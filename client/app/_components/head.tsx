@@ -29,7 +29,7 @@ const Header = () => {
           fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
         />
       </svg>
-      <h1 className="relative z-10 text-6xl font-bold text-white mb-4 font-serif font-family:ui-monospace" >Kai and Karo <span className='text-yellow-500'>AI</span>  </h1>
+      <h1 className="relative z-10 text-6xl font-bold text-white mb-4 font-serif font-family:ui-monospace" >Kai and Karo <span className='text-yellow-300'>AI</span>  </h1>
       <div className="relative z-10 w-80 h-60 md:w-[36rem] md:h-60 p-4">
       <Image
         src="/range.jpeg" 

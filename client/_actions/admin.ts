@@ -1,15 +1,15 @@
 "use server";
 
 import { prismadb } from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 export async function FetchAdminStatus() {
   try {
-    const { userId } = auth();
-    if (userId) {
+    const clerkUser = await currentUser()
+    if (clerkUser) {
       const user = await prismadb.guest.findUnique({
         where: {
-          clerkid: userId,
+          email: clerkUser.emailAddresses[0].emailAddress,
         },
         select: {
           isAdmin: true,

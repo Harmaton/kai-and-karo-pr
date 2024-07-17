@@ -42,7 +42,7 @@ export default function Sidebar() {
           >
             <EyeIcon className="text-white h-6 w-6" />
             <div className="hidden md:inline">
-              <p className="text-xl">View</p>
+              <p className="text-xl">Review</p>
               <p className="text-sm font-extralight">Sessions</p>
             </div>
             

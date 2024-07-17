@@ -1,12 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { FetchAdminStatus } from "@/_actions/admin";
 import { CheckUser } from "@/_actions/user";
@@ -45,7 +40,9 @@ export default async function Navbar() {
           <div>
             {" "}
             <Link href={"/create"}>
-              <Button className="bg-orange-500">Admin Panel</Button>
+              <Button className="bg-yellow-300 text-black hover:bg-blue-500">
+                Admin Panel
+              </Button>
             </Link>
           </div>
         )}

@@ -9,6 +9,7 @@ import {
 import Header from "./_components/head";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Footer from "@/components/footer";
 
 const Home = () => {
   const items = [
@@ -58,7 +59,7 @@ const Home = () => {
               Cars Without Being an Expert
             </p>
           </div>
-          <div className="text-3xl font-serif mb-2 text-center font-bold">Features</div>
+          <div className="text-3xl font-serif mb-4 mt-2 text-center font-bold">Features</div>
           <div className="w-full max-w-4xl mb-2 ">
             <div className="grid grid-cols-1 md:grid-cols-2  justify-center lg:grid-cols-4 gap-6">
               {items.map((item, index) => (
@@ -81,6 +82,7 @@ const Home = () => {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   );
 };

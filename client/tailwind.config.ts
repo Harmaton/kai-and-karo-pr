@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 const svgToDataUri = require("mini-svg-data-uri");
+import daisyui from "daisyui"
 
 const colors = require("tailwindcss/colors");
 const {
@@ -81,6 +82,7 @@ const config = {
     },
   },
   plugins: [
+    daisyui,
     require("tailwindcss-animate"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {

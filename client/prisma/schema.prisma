@@ -7,43 +7,42 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model Chatbot {
-  id               String                  @id @default(uuid())
-  clerkUserId      String   
-  name             String
-  createdAt        DateTime                @default(now()) @map("created_at")
-  characteristics  ChatbotCharacteristic[]
-  sessions         ChatSession[]
+  id              String                  @id @default(uuid())
+  clerkUserId     String
+  name            String
+  createdAt       DateTime                @default(now()) @map("created_at")
+  characteristics ChatbotCharacteristic[]
+  sessions        ChatSession[]
 }
 
 model ChatbotCharacteristic {
-  id         String   @id @default(uuid())
-  chatbotId  String   
-  content    String
-  createdAt  DateTime @default(now()) 
-  chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
-
+  id        String   @id @default(uuid())
+  chatbotId String
+  content   String
+  createdAt DateTime @default(now())
+  chatbot   Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  
   @@index([chatbotId])
 }
 
 model Guest {
-  id        String      @id @default(uuid())
+  id        String        @id @default(uuid())
   name      String?
-  email     String @unique
-  clerkid String @unique
-  isAdmin Boolean @default(false)
-  createdAt DateTime    @default(now()) 
+  email     String        @unique
+  clerkid   String
+  isAdmin   Boolean       @default(false)
+  createdAt DateTime      @default(now())
   sessions  ChatSession[]
 }
 
 model ChatSession {
-  id        String      @id @default(uuid())
-  chatbotId String      
-  guestId   String?     
-  createdAt DateTime    @default(now()) 
-  chatbot   Chatbot     @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
-  guest     Guest?      @relation(fields: [guestId], references: [id], onDelete: SetNull)
+  id        String    @id @default(uuid())
+  chatbotId String
+  guestId   String?
+  createdAt DateTime  @default(now())
+  chatbot   Chatbot   @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  guest     Guest?    @relation(fields: [guestId], references: [id], onDelete: SetNull)
   messages  Message[]
 
   @@index([chatbotId])
@@ -56,12 +55,12 @@ enum SenderType {
 }
 
 model Message {
-  id           String     @id @default(uuid())
-  chatSessionId String   
-  content      String
-  createdAt    DateTime    @default(now()) 
-  sender       SenderType
-  chatSession  ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+  id            String      @id @default(uuid())
+  chatSessionId String
+  content       String
+  createdAt     DateTime    @default(now())
+  sender        SenderType
+  chatSession   ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
 
   @@index([chatSessionId])
 }
