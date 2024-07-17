@@ -46,7 +46,7 @@ const ChatbotSessions = ({ chatbots }: { chatbots: ChatbotWithSessions[] }) => {
               <AccordionContent className="space-y-5 p-5 bg-gray-100 rounded-md">
                 {chatbot.sessions.map((session)=> (
                   <Link href={`/view/${session.id}`} key={session.id}>
-                    <p>{session.guestId} "Anonymous"</p>
+                    <p>{session.guestId} Anonymous</p>
                     <p className="top-5 right-5 absolute text-sm ">
                     <ReactTimeago date={new Date(session.createdAt)} locale="en-US" timeStyle="twitter"/>
                     </p>

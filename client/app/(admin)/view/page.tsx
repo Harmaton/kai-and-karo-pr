@@ -8,9 +8,9 @@ export default async function Page() {
 
   return (
     <div className="flex-1 px-10">
-      <h1 className="text-xl lg:text-3xl">Review Your Agent's Chat Sessions</h1>
+      <h1 className="text-xl lg:text-3xl">Chat session reviews</h1>
       <p className="mb-5">
-        Review all the chat sessions from the agents you created (Anonymously).
+        Review all the chat sessions from the agents you created .
       </p>
 
       {sessions ? <ChatbotSessions chatbots={sessions} /> : <p>Loading...</p>}

@@ -23,7 +23,7 @@ async function SessionIdPage({ params: { id } }: { params: { id: string } }) {
 
       <h2 className="font-light mt-2">
         Between {chatbot.name} &{" "}
-        <span className="font-bold "> 'Anonymous' </span>
+        <span className="font-bold "> Anonymous </span>
       </h2>
       <hr className="my-10" />
       <Messages messages={messages} chatbotname={chatbot.name} />
