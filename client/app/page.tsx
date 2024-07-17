@@ -34,7 +34,7 @@ const Home = () => {
     {
       href: "/faq",
       icon: MagnifyingGlassIcon,
-      text: "Ask About Us (FAQ) and our OPS",
+      text: "Ask About Us (FAQ)",
       color: "text-violet-500",
     },
   ];
