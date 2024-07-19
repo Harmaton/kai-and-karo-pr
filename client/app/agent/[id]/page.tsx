@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {  Message } from "@/types/types";
+import { Message } from "@/types/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -27,8 +27,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { GetChatbotById, GetChatbotItem } from "@/_actions/agent";
+import { GetChatbotItem } from "@/_actions/agent";
 import { Chatbot } from "@prisma/client";
+import { GetSesionMessages } from "@/_actions/session";
 
 const formSchema = z.object({
   message: z.string().min(2).max(50),
@@ -40,22 +41,22 @@ export default function ChatPage({
   params: { id: string };
 }) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
   const [isopen, setIsOpen] = useState(true);
   const [chatid, setChatId] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [chatbot, setChatBot] = useState<Chatbot>()
+  const [chatbot, setChatBot] = useState<Chatbot>();
 
-  useEffect(()=> {
-    async function getChatbot(){
-        const chatbot = await GetChatbotItem(id)
-        if(chatbot){
-            setChatBot(chatbot)
-        }
+  useEffect(() => {
+    async function getChatbot() {
+      const chatbot = await GetChatbotItem(id);
+      if (chatbot) {
+        setChatBot(chatbot);
+      }
     }
-    getChatbot()
-  }, [id])
+    getChatbot();
+  }, [id]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -127,7 +128,7 @@ export default function ChatPage({
   const handleSubmitInfo = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     const chatId = await startNewChat(name, id, email);
 
     setChatId(chatId);
@@ -137,9 +138,9 @@ export default function ChatPage({
 
   useEffect(() => {
     async function getMessages() {
-      const msgs = await GetChatMessagesByChatSessionId(id);
+      const msgs = await GetSesionMessages(id);
       if (msgs) {
-        setMessages(msgs.chat_sessions.messages);
+        setMessages(msgs.messages);
       }
     }
     getMessages();
@@ -150,8 +151,7 @@ export default function ChatPage({
         <DialogContent className="sm:max-w-[425">
           <form className="flex-1 " onSubmit={handleSubmitInfo}>
             <DialogHeader>
-              <DialogTitle>You are Engaging an AI Agent</DialogTitle>
-              <DialogDescription>What can I call you ?</DialogDescription>
+              <DialogDescription>Lets Gets Started</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
@@ -160,18 +160,18 @@ export default function ChatPage({
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="your name ..."
+                  placeholder="Name"
                   className="col-span-4 text-gray-800"
                 />
-                 <Input
+                <Input
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your email..."
+                  placeholder="Email"
                   className="col-span-4 text-gray-800"
                 />
                 <DialogFooter>
-                  <Button type="submit" disabled={!name} className="">
+                  <Button type="submit" disabled={!name || !email} className="">
                     {!loading ? "Continue" : "Loading ..."}{" "}
                   </Button>
                 </DialogFooter>
@@ -181,18 +181,22 @@ export default function ChatPage({
         </DialogContent>
       </Dialog>
       <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
-        <div className="pb-4 border-b sticky top-0 z-50 bg-[#4D7DFB] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
-         { chatbot && <Avatar
-            seed={chatbot.name!}
-            className="h-12 w-12 bg-white rounded-full border-2 border-white"
-          />}
+        <div className="pb-4 border-b sticky top-0 z-50 bg-[#0c1326] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
+          {chatbot && (
+            <Avatar
+              seed={chatbot.name!}
+              className="h-12 w-12 bg-white rounded-full border-2 border-green-600"
+            />
+          )}
           <div>
-           { chatbot && <h1 className="truncate text-lg">{chatbot.name}</h1>}
-            <p className="text-sm text-gray-300">Typically replies Instantly</p>
+            {chatbot && <h1 className="truncate text-lg font-serif">{chatbot.name}</h1>}
+            <p className="text-sm text-gray-300">Online</p>
           </div>
         </div>
 
-        { chatbot &&  <Messages messages={messages} chatbotname={chatbot?.name} /> }
+        {chatbot && (
+          <Messages messages={messages} chatbotname={chatbot?.name} />
+        )}
 
         <Form {...form}>
           <form
@@ -207,7 +211,7 @@ export default function ChatPage({
                   <FormLabel hidden>Message</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Type a message..."
+                      placeholder="Type a message ..."
                       {...field}
                       className="p-8 text-gray-800"
                     />
