@@ -2,6 +2,7 @@ import { GetChatBotSByUser } from "@/_actions/agent";
 import Avatar from "@/components/avatar";
 import Link from "next/link";
 import React from "react";
+import Characterisctic from "./[id]/_components/characterisctic";
 
 export default async function Page() {
   const agents = await GetChatBotSByUser();
@@ -24,16 +25,21 @@ export default async function Page() {
                   </div>
                   <hr className="mt-2" />
                   <div className="grid grid-cols-2 gap-10 text-black md:gap-5 p-5">
-                    <h3>Characteristics</h3>
-                    <div>
-                      {agent.characteristics
-                        .slice(0, 3)
-                        .map((characteristic) => (
-                          <p key={characteristic.id}>
-                            {characteristic.content}
-                          </p>
-                        ))}
-                    </div>
+                    <h3 className="font-serif">Latest Characteristics</h3>
+                    {agent.characteristics.length === 0 ? <div> 
+                      Not added Yet
+                    </div> : (
+                      <div>
+                        {agent.characteristics
+                          .slice(0, 2)
+                          .map((characteristic) => (
+                            <Characterisctic
+                              key={characteristic.id}
+                              characteristic={characteristic}
+                            />
+                          ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </li>

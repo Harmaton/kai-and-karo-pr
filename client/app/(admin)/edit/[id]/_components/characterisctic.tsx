@@ -1,3 +1,4 @@
+'use client'
 import { DeleteXtic } from "@/_actions/session";
 import { prismadb } from "@/lib/prisma";
 import { XCircleIcon } from "@heroicons/react/20/solid";
