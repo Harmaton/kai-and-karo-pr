@@ -30,6 +30,8 @@ import { GetChatbotItem } from "@/_actions/agent";
 import { Chatbot } from "@prisma/client";
 import { GetSesionMessages } from "@/_actions/session";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 const formSchema = z.object({
   message: z.string().min(2).max(50),
@@ -156,87 +158,105 @@ export default function ChatPage({
   }, [chatid]);
 
   return (
-    <div className="w-full flex bg-gray-100">
-      <Dialog open={isopen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[425">
-          <form className="flex-1 " onSubmit={handleSubmitInfo}>
-            <DialogHeader>
-              <DialogDescription>Lets Gets Started</DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right"></Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                  className="col-span-4 text-gray-800"
-                />
-                <Input
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  className="col-span-4 text-gray-800"
-                />
-                <DialogFooter>
-                  <Button type="submit" disabled={!name || !email} className="">
-                    {!loading ? "Continue" : "Loading ..."}{" "}
-                  </Button>
-                </DialogFooter>
+    <div className="">
+     
+        <Link href={"/agent"} className="flex items-center justify-center p-4 ">
+          <Image
+            src={"/kaiandkaro.jpeg"}
+            alt={"logo"}
+            className="rounded-lg"
+            width={80}
+            height={80}
+          />
+        </Link>
+       
+     
+      <div className="w-full flex bg-gray-100">
+        <Dialog open={isopen} onOpenChange={setIsOpen}>
+          <DialogContent className="sm:max-w-[425">
+            <form className="flex-1 " onSubmit={handleSubmitInfo}>
+              <DialogHeader>
+                <DialogDescription>Lets Gets Started</DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right"></Label>
+                  <Input
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name"
+                    className="col-span-4 text-gray-800"
+                  />
+                  <Input
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    className="col-span-4 text-gray-800"
+                  />
+                  <DialogFooter>
+                    <Button
+                      type="submit"
+                      disabled={!name || !email}
+                      className=""
+                    >
+                      {!loading ? "Continue" : "Loading ..."}{" "}
+                    </Button>
+                  </DialogFooter>
+                </div>
               </div>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-      <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
-        <div className="pb-4 border-b sticky top-0 z-50 bg-[#0c1326] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
-          {chatbot && (
-            <Avatar
-              seed={chatbot.name!}
-              className="h-12 w-12 bg-white rounded-full border-2 border-green-600"
-            />
-          )}
-          <div>
+            </form>
+          </DialogContent>
+        </Dialog>
+        <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
+          <div className="pb-4 border-b sticky top-0 z-50 bg-[#0c1326] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
             {chatbot && (
-              <h1 className="truncate text-lg font-serif">{chatbot.name}</h1>
+              <Avatar
+                seed={chatbot.name!}
+                className="h-12 w-12 bg-white rounded-full border-2 border-green-600"
+              />
             )}
-            <p className="text-sm text-gray-300">Online</p>
-          </div>
-        </div>
-
-        {chatbot && (
-          <Messages messages={messages} chatbotname={chatbot?.name} />
-        )}
-
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(submit)}
-            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 bg-gray-100 rounded-md"
-          >
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel hidden>Message</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Type a message ..."
-                      {...field}
-                      className="p-8 text-gray-800"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+            <div>
+              {chatbot && (
+                <h1 className="truncate text-lg font-serif">{chatbot.name}</h1>
               )}
-            />
-            <Button type="submit" className="h-full">
-              Send
-            </Button>
-          </form>
-        </Form>
+              <p className="text-sm text-gray-300">Online</p>
+            </div>
+          </div>
+
+          {chatbot && (
+            <Messages messages={messages} chatbotname={chatbot?.name} />
+          )}
+
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(submit)}
+              className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 bg-gray-100 rounded-md"
+            >
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormLabel hidden>Message</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Type a message ..."
+                        {...field}
+                        className="p-8 text-gray-800"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="h-full">
+                Send
+              </Button>
+            </form>
+          </Form>
+        </div>
       </div>
     </div>
   );

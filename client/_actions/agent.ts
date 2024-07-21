@@ -83,10 +83,11 @@ export async function GetUserChatbotSessions() {
       if (user) {
         const chatbots = await prismadb.chatbot.findMany({
           where: {
-            clerkUserId: clerkUser.id
-          }, include: {
-            sessions: true
-          }
+            clerkUserId: clerkUser.id,
+          },
+          include: {
+            sessions: true,
+          },
         });
         return chatbots;
       }
@@ -94,5 +95,16 @@ export async function GetUserChatbotSessions() {
   } catch (error) {
     console.log(error);
     return null;
+  }
+}
+
+export async function GetAllChatbots(){
+  try {
+    const agents = await prismadb.chatbot.findMany();
+    if(agents)
+    return agents;
+  } catch (error) {
+    console.log(error);
+    return;
   }
 }

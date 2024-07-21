@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
   const { chat_session_id, chatbot_id, content, name } = await req.json();
 
   try {
-
     //1.  FETCH CHATBOT CHARACTERISTICS (BY ID)
     const botcharacteristics = await prismadb.chatbotCharacteristic.findMany({
       where: {
