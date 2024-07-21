@@ -1,14 +1,12 @@
-
-import Image from 'next/image';
+import Image from "next/image";
 
 const Header = () => {
-      
   return (
     <div className="relative w-full flex flex-col items-center mb-8">
       <svg
         className="absolute inset-0 w-full h-full z-0"
         style={{
-          maskImage: 'radial-gradient(100% 100% at center, white, transparent)',
+          maskImage: "radial-gradient(100% 100% at center, white, transparent)",
         }}
         aria-hidden="true"
       >
@@ -29,16 +27,18 @@ const Header = () => {
           fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
         />
       </svg>
-      <h1 className="relative z-10 text-6xl font-bold text-white mb-4 font-serif font-family:ui-monospace" >Kai and Karo <span className='text-orange-400'>AI</span>  </h1>
+      <h1 className="relative z-10 text-6xl font-bold text-white mb-4 font-serif font-family:ui-monospace">
+        Kai and Karo <span className="text-orange-400">AI</span>{" "}
+      </h1>
       <div className="relative z-10 w-80 h-60 md:w-[36rem] md:h-60 p-4">
-      <Image
-        src="/range.jpeg" 
-        alt="Car"
-        layout="fill"
-        objectFit="cover"
-        className="rounded-lg"
-      />
-    </div>
+        <Image
+          src="/range.jpeg"
+          alt="Car"
+          layout="fill"
+          objectFit="cover"
+          className="rounded-lg"
+        />
+      </div>
     </div>
   );
 };
