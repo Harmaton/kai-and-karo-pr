@@ -28,7 +28,7 @@ const Home = () => {
     {
       href: "/lens",
       icon: CameraIcon,
-      text: "Search by Camera",
+      text: "Car Image Search",
       color: "text-red-500",
     },
     {
