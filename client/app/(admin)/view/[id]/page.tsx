@@ -19,11 +19,11 @@ async function SessionIdPage({ params: { id } }: { params: { id: string } }) {
   return (
     <div className="flex-1 p-10 pb-24">
       <h1 className="text-xl lg:test-3xl font-semibold mb-2">Session Review</h1>
-      <p className="font-light text-xs"> Started at : </p>
+      <p className="font-light text-xs"> Started on : {sessionData.messages[0].created_at} </p>
 
       <h2 className="font-light mt-2">
-        Between {chatbot.name} &{" "}
-        <span className="font-bold "> Anonymous </span>
+        Between : <span className="ml-2 italic mr-2"> {chatbot.name} </span>&{" "}
+        <span className="font-bold ml-2 italicized"> Anonymous </span>
       </h2>
       <hr className="my-10" />
       <Messages messages={messages} chatbotname={chatbot.name} />

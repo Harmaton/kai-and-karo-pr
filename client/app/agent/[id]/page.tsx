@@ -7,13 +7,12 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog";
 import { Message } from "@/types/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { GetChatMessagesByChatSessionId, startNewChat } from "@/_actions/chat";
+import { startNewChat } from "@/_actions/chat";
 import Avatar from "@/components/avatar";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -30,6 +29,7 @@ import {
 import { GetChatbotItem } from "@/_actions/agent";
 import { Chatbot } from "@prisma/client";
 import { GetSesionMessages } from "@/_actions/session";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   message: z.string().min(2).max(50),
@@ -119,6 +119,15 @@ export default function ChatPage({
 
     try {
       // handle the response here
+      const result = await response.json();
+      //update the thinking message with the actual message
+      setMessages((previousMessages) =>
+        previousMessages.map((msg) =>
+          msg.id === loadingMessage.id
+            ? { ...msg, content: result.content, id: result.id }
+            : msg
+        )
+      );
     } catch (error) {
       // handle errors here
       console.log(error);
@@ -138,13 +147,14 @@ export default function ChatPage({
 
   useEffect(() => {
     async function getMessages() {
-      const msgs = await GetSesionMessages(id);
+      const msgs = await GetSesionMessages(chatid);
       if (msgs) {
         setMessages(msgs.messages);
       }
     }
     getMessages();
-  }, [id]);
+  }, [chatid]);
+
   return (
     <div className="w-full flex bg-gray-100">
       <Dialog open={isopen} onOpenChange={setIsOpen}>
@@ -189,7 +199,9 @@ export default function ChatPage({
             />
           )}
           <div>
-            {chatbot && <h1 className="truncate text-lg font-serif">{chatbot.name}</h1>}
+            {chatbot && (
+              <h1 className="truncate text-lg font-serif">{chatbot.name}</h1>
+            )}
             <p className="text-sm text-gray-300">Online</p>
           </div>
         </div>
