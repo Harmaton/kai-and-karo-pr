@@ -46,14 +46,14 @@ const Home = () => {
         <main className="flex flex-col items-center justify-center flex-1 w-full px-4">
           <Header />
           <div>
-            <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-yellow-300 my-8">
+            <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-orange-400 my-8">
               Escape the Old Search, Discover the Perfect Car
             </h1>
             <p className="text-lg md:text-xl mb-8">
               Use Our Advanced{" "}
-              <span className="text-yellow-300 text-2xl font-serif ">AI </span>{" "}
+              <span className="text-orange-400 text-2xl font-serif ">AI </span>{" "}
               System to Self-
-              <span className="text-yellow-300 text-2xl font-serif ">
+              <span className="text-orange-400 text-2xl font-serif ">
                 Recommend
               </span>{" "}
               Cars Without Being an Expert
@@ -70,7 +70,7 @@ const Home = () => {
                   className="group items-center shadow-lg  dark:bg-dot-white/[0.2] bg-dot-black/[0.8] hover:bg-gray-500 flex flex-row border p-4 rounded-lg"
                   key={index}
                 >
-                  <div className="rounded-full p-2 mr-2 bg-yellow-300">
+                  <div className="rounded-full p-2 mr-2 bg-orange-400">
                     <item.icon
                       className={`h-8 w-8 m-auto items-center text-gray-800 group-hover:text-white`}
                     />

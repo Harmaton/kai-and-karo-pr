@@ -9,7 +9,7 @@ function SearchWithButton() {
     const searchTerm = formData.get("searchTerm") as string;
 
     // redirect(`/agent/${searchTerm}`);
-    console.log(searchTerm)
+    console.log(searchTerm);
   }
 
   return (
@@ -21,7 +21,7 @@ function SearchWithButton() {
         type="text"
         className="flex-1 p-4 outline-none rounded-md"
         name="searchTerm"
-         placeholder="Search Agent .."
+        placeholder="Search Agent .."
       />
     </form>
   );
