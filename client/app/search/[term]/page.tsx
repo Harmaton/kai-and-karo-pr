@@ -7,7 +7,7 @@ import Link from "next/link";
 // refresh cache every 24 hours
 export const revalidate = 60 * 60 * 24;
 
-async function SearchTerm({
+async function Page({
   params: { term },
 }: {
   params: {
@@ -54,4 +54,4 @@ async function SearchTerm({
   );
 }
 
-export default SearchTerm;
+export default Page;
