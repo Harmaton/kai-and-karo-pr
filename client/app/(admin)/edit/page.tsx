@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <div className="flex-1 pb-20 p-10 mx-auto">
-      <h1 className="text-xl lg:text-3xl font-semibold mb-5">Active Agents</h1>
+      <h1 className="text-xl lg:text-3xl font-semibold mb-5">My Online Agents</h1>
       {agents ? (
         <ul>
           {agents.map((agent) => (

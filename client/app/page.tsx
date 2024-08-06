@@ -22,7 +22,7 @@ const Home = () => {
     {
       href: "/agent",
       icon: EnvelopeIcon,
-      text: "Car Enquiry Live agents",
+      text: "Online Enquiry Agents",
       color: "text-green-500",
     },
     {
@@ -30,13 +30,7 @@ const Home = () => {
       icon: CameraIcon,
       text: "Car Image Search",
       color: "text-red-500",
-    },
-    {
-      href: "/faq",
-      icon: MagnifyingGlassIcon,
-      text: "Ask About Us (FAQ)",
-      color: "text-violet-500",
-    },
+    }
   ];
 
   return (
@@ -56,14 +50,14 @@ const Home = () => {
               <span className="text-orange-400 text-2xl font-serif ">
                 Recommend
               </span>{" "}
-              Cars Without Being an Expert
+              Cars Without Being a Car Expert
             </p>
           </div>
           <div className="text-3xl font-serif mb-4 mt-2 text-center font-bold">
             Features
           </div>
           <div className="w-full max-w-4xl mb-2 ">
-            <div className="grid grid-cols-1 md:grid-cols-2  justify-center lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2  justify-center lg:grid-cols-3 gap-6">
               {items.map((item, index) => (
                 <Link
                   href={item.href}

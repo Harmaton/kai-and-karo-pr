@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { GetChatbotById } from "@/_actions/agent";
 import Avatar from "@/components/avatar";
@@ -6,43 +6,49 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { prismadb } from "@/lib/prisma";
 import { BASE_URL } from "@/lib/url";
-import { GetChatbotByIdResponse } from "@/types/types";
-import { Chatbot, ChatbotCharacteristic } from "@prisma/client";
+import { ChatbotCharacteristic } from "@prisma/client";
 import { ClipboardCopyIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Characterisctic from "./_components/characterisctic";
 
-export default function EditChatbotPage({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+// Define the type for the props
+interface EditChatbotPageProps {
+  params: {
+    id: string; // Define the type of 'id' as 'string'
+  };
+}
+
+export default function EditChatbotPage({ params: { id } }: EditChatbotPageProps) {
   const { toast } = useToast();
   const [url, setUrl] = useState<string>("");
   const [chatbotname, setChatbotname] = useState<string>("");
-  const [characteristics, setCharacteristics] = useState<
-    ChatbotCharacteristic[]
-  >([]);
+  const [characteristics, setCharacteristics] = useState<ChatbotCharacteristic[]>([]);
   const [newCharacteristic, setNewCharacteristic] = useState<string>("");
 
-  useEffect(() => {
-    const fetchChatbot = async () => {
-      try {
-        const bot = await GetChatbotById(id);
-        if (bot) {
-          setChatbotname(bot.name);
-          setCharacteristics(bot.characteristics);
-        }
-      } catch (error) {
-        console.error(error);
+useEffect(() => {
+  const fetchChatbot = async () => {
+    try {
+      const bot = await GetChatbotById(id);
+      if (bot) {
+        console.log(bot.characteristics); // Check the structure of the data
+        setChatbotname(bot.name);
+        setCharacteristics(bot.characteristics);
       }
-    };
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  fetchChatbot();
+
+  const intervalId = setInterval(() => {
     fetchChatbot();
-  }, [id]);
+  }, 5000);
+
+  return () => clearInterval(intervalId);
+}, [id]);
 
   useEffect(() => {
     const url = `${BASE_URL}/agent/${id}`;
@@ -67,6 +73,7 @@ export default function EditChatbotPage({
         const { characteristic } = await response.json();
         setCharacteristics([...characteristics, characteristic]);
         setNewCharacteristic("");
+        
       } else {
         console.error("Failed to add characteristic");
       }
@@ -77,12 +84,12 @@ export default function EditChatbotPage({
 
   return (
     <div className="px-0 md:p-10 m-2 ">
-      <div className="md:sticky md:top-0 z-50 mb-2 sm:max-w-sm ml-auto space-y-2 border-2 p-5 rounded-lg bg-white ">
+      {/* <div className="md:sticky md:top-0 z-50 mb-2 sm:max-w-sm ml-auto space-y-2 border-2 p-5 rounded-lg bg-white ">
         <h2 className="text-sm text-black font-bold">Link</h2>
         <p className="text-sm text-black italic ">
           Share the link below to access agent
         </p>
-      </div>
+      </div> */}
       <div className="flex items-center space-x-4">
         <Link href={url} className="cursor-pointer hover:opacity-50">
           <Input
@@ -109,7 +116,6 @@ export default function EditChatbotPage({
         <Button
           variant={"destructive"}
           className="absolute top-2 right-2 mb-2 h-8 w-2"
-          // onClick={()=> handleDelete(id)}
         >
           x
         </Button>
@@ -134,25 +140,27 @@ export default function EditChatbotPage({
           your conversation about this car
         </p>
         <div className="bg-slate-400 space-y-4 space-x-4 p-4 rounded-md">
-          <form className="flex space-x-4" onClick={addCharacteristic}>
+          <form className="flex space-x-4" onSubmit={addCharacteristic}>
             <Textarea
-              placeholder="Example: If a customer asks the price of this unit, negotiate between 2.5 million to 2.4 million, try to settle in the middle"
+              placeholder="Any valid feature ..."
               value={newCharacteristic}
               onChange={(e) => setNewCharacteristic(e.target.value)}
               className="text-black bg-white"
             />
             <Button disabled={!newCharacteristic} type="submit">
-              Add Characteristic
+              Add Feature
             </Button>
           </form>
 
           <ul className="flex flex-wrap-reverse gap-5 text-black">
-            {characteristics.map((characteristic) => (
-              <Characterisctic
-                key={characteristic.id}
-                characteristic={characteristic}
-              />
-            ))}
+          {characteristics.map((characteristic) =>
+              characteristic?.id ? (
+                <Characterisctic
+                  key={characteristic.id}
+                  characteristic={characteristic}
+                />
+              ) : null
+            )}
           </ul>
         </div>
       </section>

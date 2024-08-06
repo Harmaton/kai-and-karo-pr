@@ -5,14 +5,12 @@ import React from "react";
 export default async function Page() {
   // GET USER CHATBOTS sessions (SORT IN ASC)
   const sessions = await GetUserChatbotSessions();
-
   return (
     <div className="flex-1 px-10">
-      <h1 className="text-xl lg:text-3xl">Chat session reviews</h1>
+      <h1 className="text-xl lg:text-3xl">Session reviews</h1>
       <p className="mb-5">
-        Review all the chat sessions from the agents you created .
+        Sessions from agents you created.
       </p>
-
       {sessions ? <ChatbotSessions chatbots={sessions} /> : <p>Loading...</p>}
     </div>
   );

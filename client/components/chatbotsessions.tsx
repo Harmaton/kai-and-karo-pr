@@ -22,6 +22,8 @@ const ChatbotSessions = ({ chatbots }: { chatbots: ChatbotWithSessions[] }) => {
     setSortedChatbots(sortedArray);
   }, [chatbots]);
 
+
+
   return (
     <div className="bg-white text-gray-800 rounded-md">
       <Accordion type="single" collapsible>
@@ -38,14 +40,14 @@ const ChatbotSessions = ({ chatbots }: { chatbots: ChatbotWithSessions[] }) => {
                 <div className="flex text-left items-center w-full">
                 <Avatar seed={chatbot.name} className="w-10 h-10 mr-4" />
                 <div className="flex flex-1 justify-between space-x-4">
-                  <p>{chatbot.name}</p>
-                  <p>{chatbot.sessions.length} Sessions</p>
+                  <p className="font-bold uppercase">{chatbot.name}</p>
+                  <p className="font-serif">{chatbot.sessions.length} Sessions</p>
                 </div>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="space-y-5 p-5 bg-gray-100 rounded-md">
                 {chatbot.sessions.map((session)=> (
-                  <Link href={`/view/${session.id}`} key={session.id}>
+                  <Link href={`/view/${session.id}`} className="border " key={session.id}>
                     <p>{session.guestId} Anonymous</p>
                     <p className="top-5 right-5 absolute text-sm ">
                     <ReactTimeago date={new Date(session.createdAt)} locale="en-US" timeStyle="twitter"/>
@@ -54,7 +56,7 @@ const ChatbotSessions = ({ chatbots }: { chatbots: ChatbotWithSessions[] }) => {
                 ))}
               </AccordionContent>
               </>) : (
-                <p>
+                <p className="font-serif">
                  {chatbot.name} has (No sessions Yet)
                 </p>
               )

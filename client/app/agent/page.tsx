@@ -7,7 +7,6 @@ import SearchWithButton from "./search";
 
 export default async function Page() {
   const agents = await GetAllChatbots();
-
   return (
     <div className="m-2 p-8">
       <div className="flex flex-row justify-between mb-8 mt-4">
@@ -20,7 +19,7 @@ export default async function Page() {
             height={80}
           />
         </Link>
-        <SearchWithButton  />
+        <SearchWithButton />
       </div>
       <hr />
       <p className="text-center text-sm mb-4 mt-4">Trending car agents</p>
